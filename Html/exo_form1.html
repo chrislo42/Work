@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Formulaire 1</title>
+    <link rel="stylesheet" href="exo_form1.css" />
+
+  </head>
+  <body>
+    <main>
+      <section>
+          <div id="right">
+          <a href="#" onclick="document.getElementsByTagName('main')[0].style.display='none'">X</a>
+          </div>
+          <div id="lettrine">REGISTER</div><br>
+          <div class="champ">Invitation code<br>
+            <input type="text" name="code" />
+          </div>
+          <div class="champ">Username<br>
+            <input type="text" name="u_name" />
+          </div>
+          <div class="champ">Fullname<br>
+            <input type="text" name="f_name" />
+          </div>
+          <div class="champ">Organisation<br>
+            <input type="text" name="f_name" placeholder="Optional"/>
+          </div>
+          <div class="champ">Email address<br>
+            <input type="email" name="mail"/>
+          </div>
+          <div class="champ">Password<br>
+            <input type="password" name="passwd1"/>
+            <input type="password" name="passwd2"/>
+          </div>
+          <div class="cbx">
+            <input type="checkbox" id="case" /><label for="case"><div id="decal"> I accept the <a href=""> Terms & Conditions</a></div></label>
+          </div>
+          <div class="envoie">
+          <input type="submit" value="Submit" class="bouton"/>
+          </div>
+      </section>
+    </main>
+  </body>
+</html>

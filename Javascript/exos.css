@@ -1,0 +1,57 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body{
+  position: relative;
+  margin:0 auto;
+  border: 2px solid blue;
+  padding: 0;
+  width: 900px;
+  overflow: auto;
+}
+.clearfix{
+  overflow: auto;
+}
+h2 {text-align: center;}
+#enhaut{
+  background-color: lightblue;
+}
+#droite{
+  margin-left: 310px;
+}
+#droite > p{
+  font-size: 16px;
+  line-height: 1.9;
+}
+#gauche{
+/*  position: absolute;
+on utilise pluto float avec la classe clearfix
+pour le cas ou la gauche est plus longue que la droite*/
+  float: left;
+  width: 300px;
+  padding: 0px 10px;
+}
+#enbas{
+  display: none;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: lightgrey;
+}
+button{
+  width: 250px;
+  height: 30px;
+  background-color: lightblue;
+  border-radius: 8px;
+}
+button:hover{
+  background: brown;
+  color: white;
+}
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none;
+}

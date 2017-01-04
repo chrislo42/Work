@@ -1,0 +1,89 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body{
+  position: relative;
+  background-color: #333333;
+  font-family: sans-serif;
+}
+main{
+   background-color: #95979D;
+   width: 430px;
+   padding: 40px;
+   margin: auto;
+}
+section{
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background: -webkit-linear-gradient(#fff, #eeeeee );
+  background: -o-linear-gradient(#fff, #eeeeee );
+  background: -moz-linear-gradient(#fff, #eeeeee );
+  background: linear-gradient(#fff, #eeeeee );
+/*  background-color: white;*/
+  color: #95979D;
+  font-weight: bold;
+  font-size: 12px;
+  width: 280px;
+  margin: auto;
+  padding: 20px;
+}
+#lettrine::first-letter{
+  font-size: 18px;
+}
+.champ{
+  border-radius: 5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius: 5px;
+  margin-top: 5px;
+  padding: 7px;
+  background-color: #DEDEDE;
+  }
+.champ:hover{
+  background-color: #FEF5BE;
+  color: #777777;
+  font-weight: normal;
+  font-style: normal;
+}
+input{
+/*  width: 100%;*/
+  background-color: white;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  height: 25px;
+}
+input[name=passwd2]{
+  margin-top: 5px;
+}
+input[name]{
+  width: 100%;
+}
+.envoie{
+  text-align: center;
+}
+.bouton{
+  width: 100px;
+  height: 30px;
+  border: 1px solid #85879D;
+  box-shadow: 0px 1px 5px 4px #C1C1C1;
+}
+div[id="right"] a{
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  color:#95979D;
+}
+#decal{
+  position: relative;
+  top: -23px;
+  right: -25px;
+}
+.cbx{
+}
+#right{
+  float: right;
+  position: relative;
+  top: 5px;
+}
