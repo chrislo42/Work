@@ -13,6 +13,14 @@
       $fichier = fopen($this->_nomFichier,"a");
       fputs($fichier, $contenu);
       fclose($fichier);
+//	CORRECTION
+//	if($fichier = fopen($this->_nomFichier,"a")){
+//		fputs($fichier,$zoneTexte);
+//      fclose($fichier);
+//      echo "Le fichier a bien été enregistré";
+//      }else{
+//      	echo "Problème lors de la création du fichier";
+//      }
     }
 
     public function lire(){

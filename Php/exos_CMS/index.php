@@ -28,12 +28,33 @@
 //       fclose($monfichier);
 //       echo "<h2>fichier : </h2>"."\n".$contenu."\n";
 //       echo "<h2>fichier : </h2>"."\n".include($_GET['page'])."\n";
+
+//		CORRECTION
+//      if(isset($_GET['page'])){
+//          include($_GET['page']);
+//        }else{
+//          // Sinon, on inclut une page d'accueil basique
+//          include("accueil.html");
+//        }
       include($_GET['page']);
       ?>
 
     </div>
     <div class="left">
       <?php
+      
+      // correction
+      // if ($dossier = opendir('./article')){
+      //   while ($fichier = readdir($dossier)){
+      //     if (preg_match('#\.edi$#',$fichier)){
+      //	   $nom = preg_replace('#(.+)\.edi$#','$1',$fichier);
+      //	   echo "<a href=index.php?page=$fichier>$nom</a><br />";
+      //     }
+      //   }
+      //}else{
+      //   echo "Dossier inexistant";
+      //}
+      
         $dir = 'article';
         $files = scandir($dir);
         array_shift($files);

@@ -10,6 +10,8 @@
      </header>
      <main>
        <?php
+ //	   CORRECTION
+ //	   $nom = str_replace(" ", "", htmlspecialchars($_POST['nom']));
        $nom = str_replace(" ","",$_POST['nom']); // suppression des espaces
        echo "<h2>Nom du fichier : ".$nom."</h2>";
        ?>
@@ -22,7 +24,7 @@
         ?>
       </section>
         <?php
-          if ($nom == ""){
+          if ($nom == ""){ // if (empty($nom))
             echo "<br />champ obligatoire";
           }else{
             require('Fichier.php');
