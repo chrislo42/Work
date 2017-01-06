@@ -10,7 +10,7 @@ body{
 .entete{
   background-color: #EAEAEA;
   margin: auto;
-  width: 1150px;
+  width: 100%;
   padding: 3px 0px;
 }
 
@@ -19,7 +19,7 @@ body{
   margin: auto;
   padding: 2px 150px;
   height: 100%;
-  width: 1150px;
+  width: 100%;
 }
 .clearfix{
   overflow: auto;

@@ -73,39 +73,10 @@ p{
 #bas{
   text-align: center;
 }
-.milfeu{
-}
-.milfeu a{
-  line-height: 50px;
-  color: #FFC815;
-  font-size: 12px;
-  font-weight: bolder;
-  font-stretch: ultra-expanded;
+#jaune a{
   text-decoration: none;
-  transition: color 1.5s;
+  color: yellow;
 }
-/*.milfeu a:hover{
+#jaune a:hover{
   color: white;
-}*/
-#rideau{
-  position: relative;
-  top: -72px;
-  left: 505px;
-  width: 30px;
-  height: 30px;
-  z-index: 1;
-  background-color: white;
-  width: 10px;
-  transition: width 1s;
-}
-#trans{
-  z-index: 2;
-  position: relative;
-  top: -100px;
-}
-#trans a{
-  color: transparent;
-}
-.milfeu:hover + #rideau{
-  width: 150px;
 }
