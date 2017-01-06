@@ -30,6 +30,9 @@ class Joueur{
   	}else {
   		$this->_sante -= $degats;
   	}
+    if ($this->_sante < 0){
+      $this->_sante = 0;
+    }
   }
   // Fonction qui permet d'activer le bouclier
   public function activeBouclier($de){

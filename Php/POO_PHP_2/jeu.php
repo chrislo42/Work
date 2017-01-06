@@ -35,19 +35,23 @@
           // Tant que le monstre est vivant (et le joueur aussi), le combat se déroule
           while($monstre->estVivant() && $joueur->estVivant()){
             // On lance le dé pour déterminer la force de l'attaque
+            echo($joueur->getPseudo() . " attaque *****<br /><br />");
             $degats = $joueur->attaqueMonstre($de->lanceDe());
             $monstre->subitDegats($degats);
             echo($monstre->getNom() . " a subi " . $degats . " de dégats<br />");
             echo("Il lui reste " . $monstre->getSante() . " de santé<br /><br />");
-            // Le monstre attaque à son tour et le joueur essaye de se protéger
-            $degats = $monstre->attaqueJoueur($de->lanceDe());
-            $joueur->activeBouclier($de->lanceDe());
-            $joueur->subitDegats($degats);
-            echo($joueur->getPseudo() . " a subi " . $degats . " de dégats<br />");
-            echo("Il lui reste " . $joueur->getSante() . " de santé<br /><br />");
+            // Le monstre attaque à son tour si il est vuvant et le joueur essaye de se protéger
+            if ($monstre->estVivant()){
+              echo($monstre->getNom() . " attaque *****<br /><br />");
+              $degats = $monstre->attaqueJoueur($de->lanceDe());
+              $joueur->activeBouclier($de->lanceDe());
+              $joueur->subitDegats($degats);
+              echo($joueur->getPseudo() . " a subi " . $degats . " de dégats<br />");
+              echo("Il lui reste " . $joueur->getSante() . " de santé<br /><br />");
+            }
           }
           $nb++;
-          
+
 	  // On regarde si le joueur est toujours vivant
           if($joueur->estVivant()){
             echo("Bravo, " . $joueur->getPseudo() . " a tué le monstre " . $monstre->getNom() . "<br /><br />");

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mon formulaire</title>
+    <link rel="stylesheet" href="formulaire.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
+    function verif(param){
+          alert('fonction');
+          if (param == 'te'){  var reg = new RegExp("[a-zA-Z]"); }
+          if (param == 'no'){  var reg = new RegExp("[0-9]"); }
+          if (!reg.test($(this).val())){
+            $(this).css({background:'red'});
+            document.getElementById('#envoyer').disabled=true;
+            alert("frappe incorrecte");
+          }
+          else {
+            $(this).css({background:'white'});
+            document.getElementById('#envoyer').disabled=false;
+          }
+    }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Formulaire à remplir</h1>
+    </header>
+    <main>
+    <section>
+      <form method="post" action="formule.php" name="mon formulaire">
+        <p> Questionnaire pour l'accès à l'embarquement !</p>
+        <fieldset>
+          <legend> Etat civil universel</legend>
+          <pre>
+            <label for="nom1">Nom en langue terrienne : </label><input name="nom_terre" type="text" id="nom1" class="entree" onchange="verif(te);" required/>                    <label for="nom2">Nom en langue natale :    </label><input name="nom_orig" type="text" id="nom2" onchange="verif(te);" class="entree"/>
+
+            <label for="planete">Planète d'origine : </label>      <input name="planete" type="text" id="planete" class="entree" onchange="verif(te);" required/>                    <label for="id">Numéro d'identification : </label><input name="id" type="text" id="id" onchange="verif(no);" class="entree" required/>
+
+          </pre>
+          <input type="radio" name="humain" value="humain" checked=""/> human ?<br>
+          <input type="radio" name="humain" value="alien"/> alien ?<br>
+        </fieldset>
+        <script type="text/javascript">
+          $('.entree').mouseover(function(){
+            if ($(this).css("background-color") != 'rgb(255, 0, 0)'){
+              $(this).css({background:'yellow'});
+            }
+          });
+          $('.entree').mouseout(function(){
+            if ($(this).css("background-color") != 'rgb(255, 0, 0)'){
+              $(this).css({background:'white'});
+            }
+          });
+          $('.entree').focusin(function(){
+              $(this).css({background:'yellow'});
+          });
+        </script>
+        <br>
+        <div id="right">
+          Destination :
+          <select name="list">
+            <option value="Mars">Mars</option>
+            <option value="Venus">Venus</option>
+            <option value="Europa">Europa</option>
+          </select>
+          <br><br>
+          <label for="comment" style="vertical-align:top ;"> Commentaires : </label>
+          <textarea name="commentaire" id="comment"rows="5" cols="20" placeholder="Entrer vos commentaires" onfocus="this.placeholder='';"></textarea>
+        </div>
+        <label for="check1"> Bagages ? </label><input name="bagages" type="checkbox" id="ckeck1" />
+        <label for="check2"> Premium ? </label><input name="premium" type="checkbox" id="ckeck2" />
+        <label for="check3"> Assurance ? </label><input name="assurance" type="checkbox" id="ckeck3" />
+        <br>
+        <br>
+        <label for="photo"> Sélectionner une photo d'identité : </label><input name="photo" type="file" /><br>
+        <br>
+        <label for="nombre"> Nombre de personne : </label><input name="combien" type="number" min="1" max="5" required/><br>
+        <br>
+        <input  id="envoyer" type="submit" value="Envoyer" />
+        <br>
+        <script type="text/javascript">
+          $('#envoyer').mouseover(function(){
+            $('#envoyer').css({background:'white'});
+              if ($('#nom1').css("background-color") == 'rgb(255, 0, 0)'){
+                $('#comment').css({background:"yellow"});
+                document.getElementById('#envoyer').disabled=true;
+            }else{ $('#envoyer').disabled=false};
+          });
+        </script>
+        <br>
+      </form>
+    </section>
+    </main>
+  </body>
+</html>

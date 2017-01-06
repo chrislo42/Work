@@ -25,6 +25,9 @@ class MonstreFacile{
   // Fonction qui retire les points de vie correspondants au monstre
   public function subitDegats($degats){
   	$this->_sante -= $degats;
+		if ($this->_sante < 0){
+			$this->_sante = 0;
+		}
   }
   // Fonction qui indique si un monstre est encore vivant
   public function estVivant(){
