@@ -1,0 +1,75 @@
+Note sur le projet Biennale : Démarrage automatique d'une tache sur RaspberryPi.
+================================================================================
+
+Installation de l'OS sur carte SD:
+----------------------------------
+Récupérer une image de Raspbian sur le site officiel.
+Décompresser le fichier.
+Introduire la carte.
+déterminer avec la commande "df -h" le device associé.
+Demonter les systèmes de fichiers associés à la carte par "umount /dev/"la carte SD, part"x.
+Executer la commande "sudo dd bs=4M if=le chemin du fichier of=/dev/la carte SD
+Pour cette commande, il vaut mieux se placer dans le dossier ou se trouve le fichier image.
+Le device de la carte SD depend du lecteur utilisé, sdb pour un lecteur USB, mmcblk0 pour le lecteur de SD.
+
+Utilisation de la liaison série:
+--------------------------------
+Mettre la carte SD du RPi dans un lecteur.
+Editer le fichier /boot/config.txt:
+Ajouter la ligne enable_uart=1
+
+Sur le PC, ajouter le packet screen:
+sudo apt-get install screen
+
+Installer le cable serie de Adafruit sur le connecteur:
+Ne pas brancher le fil rouge en même temps que l'alimentation externe.
+Broches à utiliser (1 près du coin ):
+fil noir: broche 3 cotè extérieur
+fil blanc: broche 4 coté extérieur
+fil vert: broche 5 coté extérieur
+
+Lancement automatique du programme:
+-----------------------------------
+On crée un fichier spécial pour lancer la commande:
+touch ~/.startrc
+echo >> ~/.startrc
+#!/bin/python
+python chemin du fichier/nom du fichier
+ctrl_D
+
+Incorporer l'appel au fichier dans ~/.bashrc
+Editer ~/.bashrc
+Ajouter à la fin du fichier
+~/.startrc
+
+Autologin:
+----------
+créer le dossier:
+sudo mkdir /etc/systemd/system/getty@ttyAMA0.service.d
+créer dans ce dossier le fichier autologin.conf:
+sudo nano autologin.conf
+[service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin pi --noclear %I 38400 linux
+
+Exécuter la commande:
+sudo systemctl enable getty@ttyAMA0.service
+
+**********
+Attention, le device tty1 a été remplacer par ttyAMA0 pour voir le script tourner sur la liaison série.
+**********
+
+Activation du son sur Rpi:
+--------------------------
+Installation du packet alsa-utils:
+sudo apt-get install alsa-utils
+
+Activation du module:
+sudo modprobe snd_bcm2835
+
+Pour ne pas refaire cette commande au prochain boot
+il faut ajouter une ligne au fichier /etc/modules:
+snd_bcm2835
+
+Lecture du fichier son avec la fonction aplay.
+ 
