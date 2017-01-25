@@ -24,7 +24,6 @@ yellow = (255, 255, 0)
 nothing = (0, 0, 0)
 
 duree = 10
-trans = 2
 
 G = green
 O = nothing
@@ -91,7 +90,7 @@ def animate(logo):
         logo = translate(logo)
         sense.clear()
         sense.set_pixels(logo)
-        time.sleep(trans/8)
+        time.sleep(0.2)
 
 """
 Fonction qui assure l'affichage du bargraph de chaque mesure
@@ -104,8 +103,8 @@ def graph_disp(valeur, couleur):
         val = meas_val(valeur)
         # effacement de la partie bargraph
         for y in range(0, 8):
-            sense.set_pixel(7, 7 - x, nothing)
-            sense.set_pixel(6, 7 - x, nothing)
+            sense.set_pixel(7, 7 - y, nothing)
+            sense.set_pixel(6, 7 - y, nothing)
         # affichage du bargraph
         for x in range(0, val):
             if (x <= 5):
