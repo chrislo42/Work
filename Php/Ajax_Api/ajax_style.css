@@ -1,0 +1,33 @@
+
+.page-header {
+  background-color: #A599A0;
+  margin-top: -20px;
+  height: 45px;
+  padding-bottom: 0;
+  padding-left: 150px;
+}
+
+.main{
+  padding-left: 5px;
+}
+hr{
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+a, a:visited, a:hover{
+  text-decoration: none;
+  color: inherit;
+}
+
+img{
+  float: right;
+  transition: transform 1s ease-out;
+}
+
+img:hover{
+  position: fixed;
+  top: 200px;
+  right: 50%;
+  transform: scale(20) rotate(360deg);
+}

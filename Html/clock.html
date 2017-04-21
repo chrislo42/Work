@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+code issu du tuto à l'url : https://cssanimation.rocks/fr/clocks/
+modifié au niveau du script javascript pour utiliser jquery.
+J'ai supprimé la suite du script et
+je suis passé par la propriété animationDelay pour synchroniser l'aiguille des minutes.
+-->
+<html lang="fr">
+	<head>
+	  <meta charset="utf-8" />
+	  <link rel="stylesheet" href="clock.css" />
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<title> clock </title>
+	</head>
+	<body>
+		<article class="clock">
+		  <div class="hours-container">
+			<div class="hours"></div>
+		  </div>
+		  <div class="minutes-container">
+			<div class="minutes"></div>
+		  </div>
+		  <div class="seconds-container">
+			<div class="seconds"></div>
+		  </div>
+		</article>
+	</body>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		initLocalClocks();
+		 /*
+		 * Starts any clocks using the user's local time
+		 * From: cssanimation.rocks/clocks
+		 */
+		function initLocalClocks() {
+		  // Get the local time using JS
+		  var date = new Date();
+		  var seconds = date.getSeconds();
+		  var minutes = date.getMinutes();
+		  var hours = date.getHours();
+
+		  // Create an object with each hand and it's angle in degrees
+		  var hands = [
+		    {
+		      hand: 'hours',
+		      angle: (hours * 30) + (minutes / 2)
+		    },
+		    {
+		      hand: 'minutes',
+		      angle: (minutes * 6)
+		    },
+		    {
+		      hand: 'seconds',
+		      angle: (seconds * 6)
+		    }
+		  ];
+
+		  // Loop through each of these hands to set their angle
+		  for (var j = 0; j < hands.length; j++) {
+				$("."+hands[j].hand).css("transform", "rotateZ("+ hands[j].angle +"deg)");
+        //document.getElementById(hands[j].hand).style.transform = 'rotateZ('+ hands[j].angle +'deg)';
+				// pour faire en sorte que l'aiguille des minutes avance quand l'aiguille des secondes est à 12
+        if (hands[j].hand === 'minutes') {
+          var attente = (hands[j + 1].angle / 6) - 1;
+					var delay = "-"+parseInt(attente)+"s";
+					console.log ('delay minutes : '+delay);
+					$("."+hands[j].hand+"-container").css("animationDelay", delay);
+					//document.getElementById(hands[j].hand+"-container").style.animationDelay = delay;
+        }
+		  }
+		}
+	});
+	</script>
+</html>

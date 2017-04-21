@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="jeu.css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <title> Jeu </title>
+</head>
+<body>
+  <div class="container">
+    <div id="0" class="carte">
+    </div>
+    <div id="1" class="carte">
+    </div>
+    <div id="2" class="carte">
+    </div>
+    <div id="3" class="carte">
+    </div>
+    <div id="4" class="carte">
+    </div>
+    <div id="5" class="carte">
+    </div>
+    <div id="6" class="carte">
+    </div>
+    <div id="7" class="carte">
+    </div>
+    <div id="8" class="carte">
+    </div>
+    <div id="9" class="carte">
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+  // suppression du contenu des div carte
+  $('.carte').empty();
+  var compt = 0;
+  //var list = ["1","3","4","2","1","5","4","5","2","3"];
+
+  // tirage aléatoire de la liste des cartes à afficher
+  var tab = ["1","1","2","2","3","3","4","4","5","5"];
+  var list = [];
+  for (i=0; i<10; i++){
+    //index aléatoire
+    n = Math.floor(Math.random()*(10-i));
+    // ajout de la carte dans la liste finale
+    list.push(tab [n]);
+    // suppression de la carte de la liste d'origine
+    tab.splice(n,1);
+  }
+
+  var result = ["0","0","0","0","0","0","0","0","0","0"];
+  var last = "";
+
+  $('.carte').click(function(){
+    // récupération de l'id de la carte
+    var id = $(this).attr('id');
+    // test si la carte est cachée
+    if (result[id] == "0"){
+      // test si deuxième click
+      if (id != last){
+        compt++;
+        if (compt <= 2){
+          var test = $(this).html();
+          // test si div contient une image
+          if (test == ""){
+            //ajout de l'image dans la div
+            $(this).html("<img src=images/ferm_"+list[id]+".jpg>");
+          }else{
+          $(this).empty();
+          }
+        }
+        // deux cartes retournées
+        if (compt == 2){
+          //gagné
+          if (list[id] == list[last]){
+            compt = 0;
+            $(this).effect( "pulsate", "slow" );
+            $("#"+last).effect( "pulsate", "slow" );
+            jouer("sons/sound_"+list[id]+".mp3");
+            result[id] = "1";
+            result[last] = "1";
+          }else{
+            // perdu
+            $(this).effect( "shake", "slow" );
+            $("#"+last).effect( "shake", "slow" );
+            // on retourne les cartes non trouvées
+            setTimeout(function() {
+              for (var i=0; i<result.length; i++){
+                if (result[i] != "1"){
+                  $("#"+i).empty();
+                }
+              }
+              // reset compt ici pour empecher un click pendant l'animation
+              compt = 0;
+            }, 2000);
+          }
+          last = "";
+        }else{
+          last = id;
+        }
+        // calcul du nombre de cartes trouvées
+        var somme = 0;
+        for (var i=0; i<result.length; i++){
+          if (result[i] == "1"){
+            somme++;
+          }
+        }
+        // fin du jeu
+        setTimeout(function() {
+          if (somme == 10){
+            $('.carte').effect( "explode", "slow", function() {
+              alert ("C'est gagné !!");
+              location.reload();
+            });
+          }
+        }, 1000);
+      }
+    }
+  });
+  // fonction de lecture fichier audio
+  function jouer(s){
+    var e=document.createElement('audio');
+    e.setAttribute('src', s);
+    e.play();
+  }
+});
+</script>
+</html>

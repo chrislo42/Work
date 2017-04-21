@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+	  <meta charset="utf-8" />
+	  <link rel="stylesheet" href="tablesorter.css" />
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery/jquery.tablesorter.js"></script>
+	  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<title> Parrainage </title>
+	</head>
+	<body>
+		<h1>Liste des parrainages dans la Loire pour 2017</h1>
+		<div class="container">
+			<div id="tableau" class="tableau"></div>
+			<div id="result" class="tableau"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+    $(document).ready(function(){
+      $.ajax({
+        method:"GET",
+        url:"https://public.opendatasoft.com/api/v2/catalog/datasets/parrainages-valides-elections-presidentielle-2017/exports/json?q=departement%3DLoire&rows=-1&pretty=false&timezone=UTC",
+				//crossDomain: true,
+				dataType: "json"
+      }).done(function(data){
+				$('#tableau').append("<table class='tablesorter'></table>");
+        var ligne = "<thead><tr><th>Parrain</th><th>Circonscription</th><th>Mandat</th><th>Candidat</th></tr></thead><tbody>";
+				$('#tableau table').append(ligne);
+				var count = new Array();
+        for ( i=0; i<data.length; i++){
+					ligne = "<tr>";
+					ligne += "<td>"+data[i]['civilite']+" "+data[i]['prenom']+" "+data[i]['nom']+"</td>";
+					if (data[i]['circonscription'] != null){
+          	ligne += "<td>"+data[i]['circonscription']+"</td>";
+					}else{
+						ligne += "<td> </td>";
+					}
+					ligne += "<td>"+data[i]['mandat']+"</td><td>"+data[i]['candidat_e_parraine_e']+"</td></tr>";
+					if (count[data[i]['candidat_e_parraine_e']]){
+						count[data[i]['candidat_e_parraine_e']]++;
+					}else{
+						count[data[i]['candidat_e_parraine_e']] = 1;
+					}
+					$('#tableau table').append(ligne);
+        }
+				$('#tableau table').append("</tbody>");
+
+				$('#result').append("<table class='tablesorter'></table>");
+        var ligne = "<thead><tr><th>Candidat</th><th>Parrainages</th></tr></thead><tbody>";
+				$('#result table').append(ligne);
+				for (var key in count){
+					ligne = "<tr><td>"+key+"</td><td>"+count[key]+"</td></tr>";
+					$('#result table').append(ligne);
+					//console.log("cle : "+key+" valeur : "+count[key]);
+				}
+				$('#result table').append("</tbody>");
+				$("table").tablesorter();
+      })
+    });
+  </script>
+</html>

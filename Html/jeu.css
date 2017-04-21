@@ -1,0 +1,21 @@
+.container {
+  width: 800px;
+  display: flex;;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.carte {
+  width: 140px;
+  height: 220px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-image: url(images/fond.jpg);
+  margin-left: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+img{
+  width: 140px;
+  height: 220px;
+}
