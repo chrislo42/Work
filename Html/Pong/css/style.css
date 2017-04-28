@@ -1,4 +1,12 @@
 body {
-	margin: auto;
 	background-color: lightgrey;
+}
+
+main {
+	position: relative;
+	margin: 50px auto;
+	width: 900px;
+}
+
+#myDiv {
 }
